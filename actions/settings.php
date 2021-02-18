@@ -4,7 +4,7 @@
  $app_name = input('app_name');
  $app_id = input('app_id');
  $app_api_key = input('app_api_key');
- $app_networks = input('app_networks');
+ $app_networks = input('app_networks');//when entered admin side must be entered comma seperated & should be until live: algorand_test, ore_test 
  $app_permission_name = input ('app_permission_name');
  $app_endpoint_url = input ('app_endpoint_url');
  $app_signal_callback = input ('app_signal_callback')
