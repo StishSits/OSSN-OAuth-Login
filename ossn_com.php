@@ -38,14 +38,17 @@ function oauth_login_cred() {
 		$settings  = $component->getSettings('OAuthLogin');
 
 		$oauth           = new stdClass;
-		$oauth->wordpress = new stdClass;
+		$oauth->ore = new stdClass;
 
-		$oauth->wordpress->consumer_authorization_url    = $settings->wp_consumer_authorization_url;
-		$oauth->wordpress->consumer_token_url    = $settings->wp_consumer_token_url;
-		$oauth->wordpress->consumer_key    = $settings->wp_consumer_key;
-		$oauth->wordpress->consumer_secret = $settings->wp_consumer_secret;
-		$oauth->wordpress->consumer_endpoint_url = $settings->wp_consumer_endpoint_url;
-		$oauth->wordpress->redirect_uri = ossn_site_url('oauth_login/wordpress');
+		$oauth->ore->app_name    = $settings->app_name;
+		$oauth->ore->app_id    = $settings->app_id;
+		$oauth->ore->app_api_key   = $settings->api_key;
+		$oauth->ore->app_networks = $settings->app_networks;
+		$oauth->ore->app_permission_name = $settings->app_permission_name;
+		$oauth->ore->redirect_uri = ossn_site_url('oauth_login/ore');
+		$oauth->ore->app_endpoint_url = $settings->app_endpoint_url;
+		$oauth->ore->app_signal_callback = $settings->app_signal_callback;
+		$oauth->ore->app_auth_callback + $settings->app_auth_callback;
 
 		return $oauth;
 }
@@ -62,13 +65,16 @@ function oauth_login_handler($pages) {
 		$oauth = oauth_login_cred();
 
 		switch($page) {
-				case 'wordpress':
-					$authorization_url = $oauth->wordpress->wp_consumer_authorization_url;
-					$token_url = $oauth->wordpress->consumer_token_url;
-					$client_id = $oauth->wordpress->consumer_key;
-					$client_secret = $oauth->wordpress->consumer_secret;
-					$client_endpoint_url = $oauth->wordpress->consumer_endpoint_url;
-					$redirect_uri = $oauth->wordpress->redirect_uri;
+				case 'ore':
+				$app_name = $oauth->ore->app_name;
+			  $app_id = $oauth->ore->app_id;
+			  $app_api_key = $oauth->app_api_key;
+			  $app_networks = $oauth->app_networks;
+			  $app_permission_name = $oauth->app_permission_name;
+			  $app_endpoint_url = $oauth->app_endpoint_url;
+			  $app_signal_callback = $oauth->_callback;
+			  $app_auth_callback = $oauth->app_auth_callback
+				
 
 					$access_token = getAccessToken($token_url, $auth_code, $client_id, $client_secret, $redirect_uri);
 					$user = getResource($access_token, $client_endpoint_url);
