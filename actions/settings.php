@@ -1,19 +1,25 @@
 <?php
  $component = new OssnComponents;
 
- $wp_consumer_authorization_url = input('wp_consumer_authorization_url');
- $wp_consumer_token_url = input('wp_consumer_token_url');
- $wp_consumer_key = input('wp_consumer_key');
- $wp_consumer_secret = input('wp_consumer_secret');
- $wp_consumer_endpoint_url = input ('wp_consumer_endpoint_url');
+ $app_name = input('app_name');
+ $app_id = input('app_id');
+ $app_api_key = input('app_api_key');
+ $app_networks = input('app_networks');
+ $app_permission_name = input ('app_permission_name');
+ $app_endpoint_url = input ('app_endpoint_url');
+ $app_signal_callback = input ('app_signal_callback')
+ $app_auth_callback = input ('app_auth_callback')
 
  $args = array(
-   'wp_consumer_authorization_url' => trim($wp_consumer_authorization_url),
-   'wp_consumer_token_url' => trim($wp_consumer_token_url),
-   'wp_consumer_key' => trim($wp_consumer_key),
-   'wp_consumer_secret' => trim($wp_consumer_secret),
-   'wp_consumer_endpoint_url' => trim($wp_consumer_endpoint_url),
- );
+   'app_name' => trim($app_name),
+   'app_id' => trim($app_id),
+   'app_api_key' => trim($app_api_key),
+   'app_networks' => trim($app_networks),
+   'app_permission_name' => trim($app_permission_name),
+   'app_endpoint_url' => trim($app_endpoint_url),
+   'app_signal_callback' =>trim($app_signal_callback),
+   'app_auth_callback' => triim($app_auth_callback),
+  );
 
  if($component->setSettings('OAuthLogin', $args)){
 		ossn_trigger_message(ossn_print('oauth:login:settings:saved'));
